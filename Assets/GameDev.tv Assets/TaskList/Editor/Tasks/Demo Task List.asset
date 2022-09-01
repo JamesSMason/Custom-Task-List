@@ -12,4 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4796bcabdb2dedd45be050976b9c9eb2, type: 3}
   m_Name: Demo Task List
   m_EditorClassIdentifier: 
-  tasks: []
+  tasks:
+  - Add a task
+  - Save and Load tasks
+  - Complete tasks
+  - Search for tasks
+  - Track progress
