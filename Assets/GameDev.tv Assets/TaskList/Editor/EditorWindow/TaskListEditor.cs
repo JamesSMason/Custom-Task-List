@@ -11,7 +11,8 @@ namespace GameDevTV.Tasks
     public class TaskListEditor : EditorWindow
     {
         VisualElement container;
-
+        ObjectField savedTasksObjectField;
+        Button loadTasksButton;
         TextField taskText;
         Button addTaskButton;
         ScrollView taskListScrollView;
@@ -34,18 +35,44 @@ namespace GameDevTV.Tasks
             StyleSheet styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>(path + "TaskListEditor.uss");
             container.styleSheets.Add(styleSheet);
 
+            savedTasksObjectField = container.Q<ObjectField>("savedTasksObjectField");
+            savedTasksObjectField.objectType = typeof(TaskListSO);
+
+            loadTasksButton = container.Q<Button>("loadTasksButton");
+            loadTasksButton.clicked += LoadTasks;
+
             taskText = container.Q<TextField>("taskText");
+            taskText.RegisterCallback<KeyDownEvent>(AddTask);
 
             addTaskButton = container.Q<Button>("addTaskButton");
             addTaskButton.clicked += AddTask;
 
             taskListScrollView = container.Q<ScrollView>("taskList");
-
         }
 
         private void AddTask()
         {
-            Debug.Log("Task added.");
+            if (!string.IsNullOrEmpty(taskText.value))
+            {
+                Toggle taskItem = new Toggle();
+                taskListScrollView.Add(taskItem);
+                taskItem.text = taskText.value;
+                taskText.value = "";
+                taskText.Focus();
+            }   
+        }
+
+        private void AddTask(KeyDownEvent e)
+        {
+            if (Event.current.Equals(Event.KeyboardEvent("Return")))
+            {
+                AddTask();
+            }
+        }
+
+        private void LoadTasks()
+        {
+            Debug.Log("Loading");
         }
     }
 }

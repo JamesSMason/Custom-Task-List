@@ -1,8 +1,13 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
     <Style src="project://database/Assets/GameDev.tv%20Assets/TaskList/Editor/EditorWindow/TaskListEditor.uss?fileID=7433441132597879392&amp;guid=ffdc3f7ed59245f488e2522f5146e397&amp;type=3#TaskListEditor" />
+    <ui:VisualElement name="LoadingTasks">
+        <uie:ObjectField label="Load Saved Tasks:" name="savedTasksObjectField" />
+        <ui:Button text="Load Tasks" display-tooltip-when-elided="true" name="loadTasksButton" />
+    </ui:VisualElement>
     <ui:VisualElement name="AddingTasks">
-        <ui:TextField picking-mode="Ignore" label="Text Field" value="filler text" text="filler text" name="taskText" />
-        <ui:Button text="Button" display-tooltip-when-elided="true" name="addTaskButton" />
+        <ui:Label text="Add New Task" display-tooltip-when-elided="true" name="addTasksHeader" />
+        <ui:TextField picking-mode="Ignore" text="New task..." name="taskText" />
+        <ui:Button text="Add" display-tooltip-when-elided="true" name="addTaskButton" />
     </ui:VisualElement>
     <ui:VisualElement name="DisplayingTasks">
         <ui:ScrollView name="taskList" />
