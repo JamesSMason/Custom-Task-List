@@ -17,6 +17,8 @@ namespace GameDevTV.Tasks
         Button addTaskButton;
         ScrollView taskListScrollView;
 
+        TaskListSO taskListSO;
+
         public const string path = "Assets/GameDev.tv Assets/TaskList/Editor/EditorWindow/";
 
         [MenuItem("GameDev.tv/Task List")]
@@ -54,9 +56,7 @@ namespace GameDevTV.Tasks
         {
             if (!string.IsNullOrEmpty(taskText.value))
             {
-                Toggle taskItem = new Toggle();
-                taskListScrollView.Add(taskItem);
-                taskItem.text = taskText.value;
+                taskListScrollView.Add(CreateTask(taskText.value));
                 taskText.value = "";
                 taskText.Focus();
             }   
@@ -70,9 +70,27 @@ namespace GameDevTV.Tasks
             }
         }
 
+        private Toggle CreateTask(string taskText)
+        {
+            Toggle taskItem = new Toggle();
+            taskItem.text = taskText;
+            return taskItem;
+        }
+
         private void LoadTasks()
         {
-            Debug.Log("Loading");
+            taskListSO = savedTasksObjectField.value as TaskListSO;
+
+            if (taskListSO != null)
+            {
+                taskListScrollView.Clear();
+                List<string> tasks = taskListSO.GetTasks();
+
+                foreach (string task in tasks)
+                {
+                    taskListScrollView.Add(CreateTask(task));
+                }
+            }
         }
     }
 }
