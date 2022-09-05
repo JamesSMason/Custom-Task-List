@@ -57,6 +57,7 @@ namespace GameDevTV.Tasks
             if (!string.IsNullOrEmpty(taskText.value))
             {
                 taskListScrollView.Add(CreateTask(taskText.value));
+                SaveTask(taskText.value);
                 taskText.value = "";
                 taskText.Focus();
             }   
@@ -91,6 +92,14 @@ namespace GameDevTV.Tasks
                     taskListScrollView.Add(CreateTask(task));
                 }
             }
+        }
+
+        private void SaveTask(string task)
+        {
+            taskListSO.AddTask(task);
+            EditorUtility.SetDirty(taskListSO);
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
         }
     }
 }

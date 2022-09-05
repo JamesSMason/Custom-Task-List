@@ -14,7 +14,12 @@ namespace GameDevTV.Tasks
             return tasks;
         }
 
-        public void Save(List<string> savedTasks)
+        public void AddTask(string savedTask)
+        {
+            tasks.Add(savedTask);
+        }
+
+        public void AddTasks(List<string> savedTasks)
         {
             tasks.Clear();
             tasks = savedTasks;
