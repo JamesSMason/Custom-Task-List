@@ -1,10 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
-using System;
 
 namespace GameDevTV.Tasks
 {
@@ -31,8 +29,13 @@ namespace GameDevTV.Tasks
         public void CreateGUI()
         {
             container = rootVisualElement;
+
             VisualTreeAsset original = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(path + "TaskListEditor.uxml");
-            container.Add(original.Instantiate());
+
+            TemplateContainer templateContainer = original.Instantiate();
+            templateContainer.style.flexGrow = 1f;
+
+            container.Add(templateContainer);
 
             StyleSheet styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>(path + "TaskListEditor.uss");
             container.styleSheets.Add(styleSheet);

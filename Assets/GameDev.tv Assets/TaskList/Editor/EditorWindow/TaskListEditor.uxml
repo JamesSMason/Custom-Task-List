@@ -1,15 +1,23 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="True">
     <Style src="project://database/Assets/GameDev.tv%20Assets/TaskList/Editor/EditorWindow/TaskListEditor.uss?fileID=7433441132597879392&amp;guid=ffdc3f7ed59245f488e2522f5146e397&amp;type=3#TaskListEditor" />
-    <ui:VisualElement name="LoadingTasks">
+    <ui:VisualElement name="LoadingTasks" class="container">
         <uie:ObjectField label="Load Saved Tasks:" name="savedTasksObjectField" />
-        <ui:Button text="Load Tasks" display-tooltip-when-elided="true" name="loadTasksButton" />
+        <ui:Button text="Load Tasks" display-tooltip-when-elided="true" name="loadTasksButton" class="button" />
     </ui:VisualElement>
-    <ui:VisualElement name="AddingTasks">
-        <ui:Label text="Add New Task" display-tooltip-when-elided="true" name="addTasksHeader" />
-        <ui:TextField picking-mode="Ignore" text="New task..." name="taskText" />
-        <ui:Button text="Add" display-tooltip-when-elided="true" name="addTaskButton" />
+    <ui:VisualElement name="AddingTasks" class="container" style="flex-direction: column;">
+        <ui:Label text="Add New Task" display-tooltip-when-elided="true" name="addTasksHeader" class="header" style="padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0;" />
+        <ui:VisualElement name="taskAdder" style="flex-direction: row; height: auto; align-items: center; justify-content: space-around; margin-left: 0; margin-right: 10px; margin-top: 0; margin-bottom: 0;">
+            <ui:TextField picking-mode="Ignore" text="New task..." name="taskText" style="flex-grow: 1; height: auto; align-items: center; flex-shrink: 1; width: 80%; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 1%; padding-right: 1%; padding-top: 1%; padding-bottom: 1%;" />
+            <ui:Button text="Add" display-tooltip-when-elided="true" name="addTaskButton" class="background" style="height: auto; max-height: none; min-height: auto; flex-direction: row; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; width: 20%; padding-left: 1%; padding-right: 1%; padding-top: 1%; padding-bottom: 1%;" />
+        </ui:VisualElement>
     </ui:VisualElement>
-    <ui:VisualElement name="DisplayingTasks">
-        <ui:ScrollView name="taskList" />
+    <ui:VisualElement name="DisplayingTasks" class="container expand">
+        <ui:Label text="Current Tasks" display-tooltip-when-elided="true" name="currentTasksHeader" class="header" />
+        <ui:ScrollView name="taskList" class="border" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; flex-grow: 1;" />
+    </ui:VisualElement>
+    <ui:VisualElement name="TrackingTasks" class="container">
+        <ui:Button text="Save Progress" display-tooltip-when-elided="true" name="saveProgressButton" class="button" />
+        <ui:Label text="Progress" display-tooltip-when-elided="true" name="progressBarHeader" class="header" />
+        <ui:ProgressBar title="my-progress" name="taskProgressBar" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0;" />
     </ui:VisualElement>
 </ui:UXML>

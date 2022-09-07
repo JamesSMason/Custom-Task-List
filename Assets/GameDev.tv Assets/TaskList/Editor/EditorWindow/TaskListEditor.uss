@@ -1,0 +1,60 @@
+.container {
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+}
+
+.button {
+    margin-left: -5px;
+    margin-right: -5px;
+    -unity-font: url('project://database/Library/unity%20default%20resources?fileID=10102&guid=0000000000000000e000000000000000&type=0#Arial');
+    -unity-font-style: normal;
+    min-height: 40px;
+}
+
+.header {
+    align-items: stretch;
+    -unity-font: none;
+    -unity-font-style: normal;
+    -unity-text-align: upper-center;
+    font-size: 12px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    -unity-background-image-tint-color: rgb(210, 210, 210);
+    color: rgb(255, 255, 255);
+    margin-top: 0;
+}
+
+.background {
+    background-color: rgba(31, 102, 23, 255);
+}
+
+.expand {
+    flex-grow: 1;
+}
+
+.border {
+    border-left-color: rgb(31, 102, 23);
+    border-right-color: rgb(31, 102, 23);
+    border-top-color: rgb(31, 102, 23);
+    border-bottom-color: rgb(31, 102, 23);
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
