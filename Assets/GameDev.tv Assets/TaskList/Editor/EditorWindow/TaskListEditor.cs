@@ -11,6 +11,7 @@ namespace GameDevTV.Tasks
         VisualElement container;
         ObjectField savedTasksObjectField;
         Button loadTasksButton;
+        Button saveProgressButton;
         TextField taskText;
         Button addTaskButton;
         ScrollView taskListScrollView;
@@ -53,6 +54,9 @@ namespace GameDevTV.Tasks
             addTaskButton.clicked += AddTask;
 
             taskListScrollView = container.Q<ScrollView>("taskList");
+
+            saveProgressButton = container.Q<Button>("saveProgressButton");
+            saveProgressButton.clicked += SaveProgress;
         }
 
         private void AddTask()
@@ -103,6 +107,29 @@ namespace GameDevTV.Tasks
             EditorUtility.SetDirty(taskListSO);
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
+        }
+
+        private void SaveProgress()
+        {
+            if (taskListSO != null)
+            {
+                List<string> tasks = new List<string>();
+
+                foreach (Toggle task in taskListScrollView.Children())
+                {
+                    if (!task.value)
+                    {
+                        tasks.Add(task.text);
+                    }
+                }
+
+                taskListSO.AddTasks(tasks);
+                EditorUtility.SetDirty(taskListSO);
+                AssetDatabase.SaveAssets();
+                AssetDatabase.Refresh();
+
+                LoadTasks();
+            }
         }
     }
 }
