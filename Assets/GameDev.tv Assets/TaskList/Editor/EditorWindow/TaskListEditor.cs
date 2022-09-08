@@ -11,10 +11,11 @@ namespace GameDevTV.Tasks
         VisualElement container;
         ObjectField savedTasksObjectField;
         Button loadTasksButton;
-        Button saveProgressButton;
         TextField taskText;
         Button addTaskButton;
         ScrollView taskListScrollView;
+        Button saveProgressButton;
+        ProgressBar taskProgressBar;
 
         TaskListSO taskListSO;
 
@@ -57,6 +58,8 @@ namespace GameDevTV.Tasks
 
             saveProgressButton = container.Q<Button>("saveProgressButton");
             saveProgressButton.clicked += SaveProgress;
+
+            taskProgressBar = container.Q<ProgressBar>("taskProgressBar");
         }
 
         private void AddTask()
@@ -67,7 +70,8 @@ namespace GameDevTV.Tasks
                 SaveTask(taskText.value);
                 taskText.value = "";
                 taskText.Focus();
-            }   
+                UpdateProgress();
+            }
         }
 
         private void AddTask(KeyDownEvent e)
@@ -82,6 +86,7 @@ namespace GameDevTV.Tasks
         {
             Toggle taskItem = new Toggle();
             taskItem.text = taskText;
+            taskItem.RegisterValueChangedCallback(UpdateProgress);
             return taskItem;
         }
 
@@ -98,6 +103,8 @@ namespace GameDevTV.Tasks
                 {
                     taskListScrollView.Add(CreateTask(task));
                 }
+
+                UpdateProgress();
             }
         }
 
@@ -130,6 +137,35 @@ namespace GameDevTV.Tasks
 
                 LoadTasks();
             }
+        }
+
+        private void UpdateProgress()
+        {
+            int totalTasks = 0;
+            int completedTasks = 0;
+
+            foreach (Toggle task in taskListScrollView.Children())
+            {
+                if (task.value)
+                {
+                    completedTasks++;
+                }
+                totalTasks++;
+            }
+
+            if (totalTasks > 0)
+            {
+                taskProgressBar.value = (float)completedTasks / totalTasks;
+            }
+            else
+            {
+                taskProgressBar.value = 1;
+            }
+        }
+
+        private void UpdateProgress(ChangeEvent<bool> e)
+        {
+            UpdateProgress();
         }
     }
 }
