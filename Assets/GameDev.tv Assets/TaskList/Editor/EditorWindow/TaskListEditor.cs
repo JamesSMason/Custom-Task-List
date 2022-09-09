@@ -155,11 +155,14 @@ namespace GameDevTV.Tasks
 
             if (totalTasks > 0)
             {
-                taskProgressBar.value = (float)completedTasks / totalTasks;
+                float progress = (float)completedTasks / totalTasks;
+                taskProgressBar.value = progress;
+                taskProgressBar.title = string.Format("{0} %", Mathf.Round(progress * 1000) / 10f);
             }
             else
             {
                 taskProgressBar.value = 1;
+                taskProgressBar.title = string.Format("{0} %", 100);
             }
         }
 

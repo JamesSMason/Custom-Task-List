@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Demo Task List
   m_EditorClassIdentifier: 
   tasks:
-  - Search for tasks
-  - Track progress
-  - test
+  - test 1
+  - test 2
+  - test 3
+  - test 4
+  - completion
